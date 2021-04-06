@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-import { MapsApp } from './MapsApp';
+import { MapApp } from './MapApp';
 
 ReactDOM.render(
-  <MapsApp />,
+  <MapApp />,
   document.getElementById('root')
 );
