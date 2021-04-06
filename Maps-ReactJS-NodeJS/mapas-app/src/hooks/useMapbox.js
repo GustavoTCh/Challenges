@@ -1,4 +1,4 @@
-import mapboxgl from 'mapbox-gl';
+import mapboxgl, { Marker } from 'mapbox-gl';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Subject } from 'rxjs';
 import { v4 } from 'uuid';
@@ -23,17 +23,17 @@ export const useMapbox = (initialPoint) => {
     // Observable of RxJS
     const movingMarker = useRef(new Subject());
     const newMarker = useRef(new Subject());
-    
+
 
     // Map and coors
     const map = useRef();
     const [coords, setCoords] = useState(initialPoint);
 
     // function add markers
-    const addMarker = useCallback((ev) => {
-        const { lat, lng } = ev.lngLat;
+    const addMarker = useCallback((ev, id) => {
+        const { lat, lng } = ev.lngLat ?? ev;
         const marker = new mapboxgl.Marker();
-        marker.id = v4();
+        marker.id = id ?? v4();
 
         marker
             .setLngLat([lng, lat])
@@ -42,18 +42,29 @@ export const useMapbox = (initialPoint) => {
 
         markers.current[marker.id] = marker;
 
-        newMarker.current.next(marker);
+        if (!id) {
+            newMarker.current.next({
+                id: marker.id,
+                lat,
+                lng,
+            });
+        }
 
-        marker.on('drag',({target})=>{
-            const {id} = target;
-            const {lng,lat} = target.getLngLat();
+        marker.on('drag', ({ target }) => {
+            const { id } = target;
+            const { lng, lat } = target.getLngLat();
             movingMarker.current.next({
                 id,
                 lat,
                 lng,
             });
         });
-    }, [],);
+    }, []);
+
+    // function for update marker position
+    const updateMarker = useCallback(({ id, lng, lat }) => {
+        markers.current[id].setLngLat([lng, lat]);
+    }, []);
 
 
     useEffect(() => {
@@ -86,6 +97,7 @@ export const useMapbox = (initialPoint) => {
 
     return {
         addMarker,
+        updateMarker,
         coords,
         markers,
         newMarker$: newMarker.current,
