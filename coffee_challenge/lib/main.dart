@@ -1,4 +1,5 @@
 import 'package:coffee_challenge/bacground.dart';
+import 'package:coffee_challenge/models/coffee_model.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -26,67 +27,71 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  bool isDark = false;
+  final _pageCoffeeController = PageController(viewportFraction: 0.35);
+  double _currentPage = 0.0;
+
+  void _coffeeScrollListener() {}
+
+  @override
+  void initState() {
+    _pageCoffeeController.addListener(_coffeeScrollListener);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _pageCoffeeController.removeListener(_coffeeScrollListener);
+    _pageCoffeeController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Background(
-        isDark: isDark,
-        child: Stack(
-          children: [
-            SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Icon(
-                      Icons.arrow_back_ios,
-                      size: 30,
-                      color: isDark ? Colors.white : Colors.black,
-                    ),
-                    Icon(
-                      Icons.shopping_bag_outlined,
-                      size: 30,
-                      color: isDark ? Colors.white : Colors.black,
-                    ),
-                  ],
-                ),
-              ),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      body: Stack(
+        children: [
+          Positioned(
+            left: 0,
+            top: 0,
+            right: 0,
+            height: 100,
+            child: Container(
+              color: Colors.red,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Expanded(
-                  child: Container(
-                    width: 300,
-                    child: CarouselSlider(
-                      options: CarouselOptions(
-                        enlargeCenterPage: true,
-                        enlargeStrategy: CenterPageEnlargeStrategy.scale,
-                        scrollDirection: Axis.vertical,
-                        autoPlay: false,
-                        viewportFraction: 0.5
-                      ),
-                      items: [
-                        Container(height: 400, color: Colors.green, child: Image.asset('assets/images/1.png',fit: BoxFit.fill,)),
-                        Container(height: 400, color: Colors.green, child: Image.asset('assets/images/2.png',fit: BoxFit.fill,)),
-                        Container(height: 400, color: Colors.green, child: Image.asset('assets/images/3.png',fit: BoxFit.fill,)),
-                        Container(height: 400, color: Colors.green, child: Image.asset('assets/images/4.png',fit: BoxFit.fill,)),
-                        Container(height: 400, color: Colors.green, child: Image.asset('assets/images/5.png',fit: BoxFit.fill,)),
-                        Container(height: 400, color: Colors.green, child: Image.asset('assets/images/6.png',fit: BoxFit.fill,)),
-                        Container(height: 400, color: Colors.green, child: Image.asset('assets/images/7.png',fit: BoxFit.fill,)),
-                        Container(height: 400, color: Colors.green, child: Image.asset('assets/images/8.png',fit: BoxFit.fill,)),
-                        Container(height: 400, color: Colors.green, child: Image.asset('assets/images/9.png',fit: BoxFit.fill,)),
-                        Container(height: 400, color: Colors.green, child: Image.asset('assets/images/10.png',fit: BoxFit.fill,)),
-                      ],
-                    ),
-                  ),
+          ),
+          PageView.builder(
+            controller: _pageCoffeeController,
+            scrollDirection: Axis.vertical,
+            itemCount: coffees.length + 1,
+            itemBuilder: (context, index) {
+              if (index == 0) {
+                return const SizedBox.shrink();
+              }
+              final coffee = coffees[index - 1];
+              final result = _currentPage - index + 1;
+              final value = -0.4 * result + 1;
+              final opacity = value.clamp(0.0, 1.0);
+              return Transform(
+                alignment: Alignment.center,
+                transform: Matrix4.identity()
+                  ..setEntry(3, 2, 0.001)
+                  ..translate(
+                    0.0,
+                    MediaQuery.of(context).size.height / 2.6 * (1 - value).abs(),
+                  )
+                  ..scale(value),
+                child: Opacity(
+                  opacity: opacity,
+                  child: Image.asset(coffee.image),
                 ),
-              ],
-            ),
-          ],
-        ),
+              );
+            },
+          )
+        ],
       ),
     );
   }
