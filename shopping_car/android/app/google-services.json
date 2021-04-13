@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "334759211090",
+    "project_id": "shopping-car-d5ed6",
+    "storage_bucket": "shopping-car-d5ed6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:334759211090:android:d03e39473ad8a25b21ef8b",
+        "android_client_info": {
+          "package_name": "com.example.shopping_car"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "334759211090-8fneoink5c82t416fgdknf1e6vb8lvfr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgeI4ztp64Dc9R6vAvE54skA156iDasC8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "334759211090-8fneoink5c82t416fgdknf1e6vb8lvfr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
