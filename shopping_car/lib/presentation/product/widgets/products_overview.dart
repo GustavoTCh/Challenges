@@ -1,7 +1,6 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:shopping_car/application/products/product_watcher/bloc/product_watcher_bloc.dart';
 import 'package:shopping_car/presentation/product/widgets/product_card.dart';
 

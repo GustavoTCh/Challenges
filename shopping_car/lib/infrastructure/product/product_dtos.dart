@@ -1,7 +1,6 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'package:shopping_car/domain/core/value_objects.dart';
 import 'package:shopping_car/domain/products/product.dart';
 import 'package:shopping_car/domain/products/value_objects.dart';

@@ -5,6 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
+
 import 'package:shopping_car/domain/products/i_product_repository.dart';
 import 'package:shopping_car/domain/products/product.dart';
 import 'package:shopping_car/domain/products/product_failure.dart';
