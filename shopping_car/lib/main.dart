@@ -1,19 +1,21 @@
+import 'dart:developer';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:shopping_car/presentation/screens/home_screen.dart';
+import 'package:injectable/injectable.dart';
 
-void main() {
-  runApp(MyApp());
-}
+import 'package:shopping_car/presentation/core/app.dart';
+import 'package:shopping_car/presentation/router/app_router.dart';
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: HomeScreen(),
-    );
-  }
+import 'injection.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  configureInjection(Environment.prod);
+  await Firebase.initializeApp();
+
+  runApp(MyApp(
+    appRouter: AppRouter(),
+  ));
 }

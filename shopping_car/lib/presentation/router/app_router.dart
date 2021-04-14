@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_car/presentation/screens/home_screen.dart';
-import 'package:shopping_car/presentation/screens/shopping_screen.dart';
+import 'package:shopping_car/presentation/product/products_overview_page.dart';
 
 class AppRouter {
   Route onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/':
         return MaterialPageRoute(
-          builder: (_) => HomeScreen(),
-        );
-      case '/shopping':
-        return MaterialPageRoute(
-          builder: (_) => ShoppingScreen(),
+          builder: (_) => ProductsOverviewPage(),
         );
       default:
         return null;
