@@ -17,11 +17,13 @@ class _$ProductTearOff {
   _Product call(
       {@required UniqueId id,
       @required ProductName name,
-      @required ProductPrice price}) {
+      @required ProductPrice price,
+      @required UrlImage urlImage}) {
     return _Product(
       id: id,
       name: name,
       price: price,
+      urlImage: urlImage,
     );
   }
 }
@@ -35,6 +37,7 @@ mixin _$Product {
   UniqueId get id;
   ProductName get name;
   ProductPrice get price;
+  UrlImage get urlImage;
 
   @JsonKey(ignore: true)
   $ProductCopyWith<Product> get copyWith;
@@ -44,7 +47,8 @@ mixin _$Product {
 abstract class $ProductCopyWith<$Res> {
   factory $ProductCopyWith(Product value, $Res Function(Product) then) =
       _$ProductCopyWithImpl<$Res>;
-  $Res call({UniqueId id, ProductName name, ProductPrice price});
+  $Res call(
+      {UniqueId id, ProductName name, ProductPrice price, UrlImage urlImage});
 }
 
 /// @nodoc
@@ -60,11 +64,13 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
     Object id = freezed,
     Object name = freezed,
     Object price = freezed,
+    Object urlImage = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as UniqueId,
       name: name == freezed ? _value.name : name as ProductName,
       price: price == freezed ? _value.price : price as ProductPrice,
+      urlImage: urlImage == freezed ? _value.urlImage : urlImage as UrlImage,
     ));
   }
 }
@@ -74,7 +80,8 @@ abstract class _$ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
   factory _$ProductCopyWith(_Product value, $Res Function(_Product) then) =
       __$ProductCopyWithImpl<$Res>;
   @override
-  $Res call({UniqueId id, ProductName name, ProductPrice price});
+  $Res call(
+      {UniqueId id, ProductName name, ProductPrice price, UrlImage urlImage});
 }
 
 /// @nodoc
@@ -91,11 +98,13 @@ class __$ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
     Object id = freezed,
     Object name = freezed,
     Object price = freezed,
+    Object urlImage = freezed,
   }) {
     return _then(_Product(
       id: id == freezed ? _value.id : id as UniqueId,
       name: name == freezed ? _value.name : name as ProductName,
       price: price == freezed ? _value.price : price as ProductPrice,
+      urlImage: urlImage == freezed ? _value.urlImage : urlImage as UrlImage,
     ));
   }
 }
@@ -103,10 +112,14 @@ class __$ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
 /// @nodoc
 class _$_Product extends _Product {
   const _$_Product(
-      {@required this.id, @required this.name, @required this.price})
+      {@required this.id,
+      @required this.name,
+      @required this.price,
+      @required this.urlImage})
       : assert(id != null),
         assert(name != null),
         assert(price != null),
+        assert(urlImage != null),
         super._();
 
   @override
@@ -115,10 +128,12 @@ class _$_Product extends _Product {
   final ProductName name;
   @override
   final ProductPrice price;
+  @override
+  final UrlImage urlImage;
 
   @override
   String toString() {
-    return 'Product(id: $id, name: $name, price: $price)';
+    return 'Product(id: $id, name: $name, price: $price, urlImage: $urlImage)';
   }
 
   @override
@@ -130,7 +145,10 @@ class _$_Product extends _Product {
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.price, price) ||
-                const DeepCollectionEquality().equals(other.price, price)));
+                const DeepCollectionEquality().equals(other.price, price)) &&
+            (identical(other.urlImage, urlImage) ||
+                const DeepCollectionEquality()
+                    .equals(other.urlImage, urlImage)));
   }
 
   @override
@@ -138,7 +156,8 @@ class _$_Product extends _Product {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(price);
+      const DeepCollectionEquality().hash(price) ^
+      const DeepCollectionEquality().hash(urlImage);
 
   @JsonKey(ignore: true)
   @override
@@ -151,7 +170,8 @@ abstract class _Product extends Product {
   const factory _Product(
       {@required UniqueId id,
       @required ProductName name,
-      @required ProductPrice price}) = _$_Product;
+      @required ProductPrice price,
+      @required UrlImage urlImage}) = _$_Product;
 
   @override
   UniqueId get id;
@@ -159,6 +179,8 @@ abstract class _Product extends Product {
   ProductName get name;
   @override
   ProductPrice get price;
+  @override
+  UrlImage get urlImage;
   @override
   @JsonKey(ignore: true)
   _$ProductCopyWith<_Product> get copyWith;

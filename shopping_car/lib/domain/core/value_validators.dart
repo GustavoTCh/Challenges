@@ -22,7 +22,7 @@ Either<ValueFailure<String>, String> validateStringNotEmpty(String input) {
   }
 }
 
-Either<ValueFailure<int>, int> validateNumberNoNegative(int input) {
+Either<ValueFailure<double>, double> validateNumberNoNegative(double input) {
   if (input >= 0) {
     return right(input);
   } else {

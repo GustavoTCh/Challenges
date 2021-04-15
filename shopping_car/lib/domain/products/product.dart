@@ -15,12 +15,14 @@ abstract class Product implements _$Product {
     @required UniqueId id,
     @required ProductName name,
     @required ProductPrice price,
+    @required UrlImage urlImage,
   }) = _Product;
 
   factory Product.empty() => Product(
         id: UniqueId(),
         name: ProductName('not name'),
         price: ProductPrice(0),
+        urlImage: UrlImage('not url'),
       );
 
   Option<ValueFailure<dynamic>> get failureOption {

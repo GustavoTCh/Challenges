@@ -4,13 +4,13 @@ import 'package:shopping_car/domain/core/failures.dart';
 import 'package:shopping_car/domain/core/value_objects.dart';
 import 'package:shopping_car/domain/core/value_validators.dart';
 
-class ProductPrice extends ValueObject<int> {
+class ProductPrice extends ValueObject<double> {
   @override
-  final Either<ValueFailure<int>, int> value;
+  final Either<ValueFailure<double>, double> value;
 
   static const maxLength = 1000;
 
-  factory ProductPrice(int input) {
+  factory ProductPrice(double input) {
     assert(input != null);
     return ProductPrice._(
       validateNumberNoNegative(input),
@@ -36,4 +36,19 @@ class ProductName extends ValueObject<String> {
   }
 
   const ProductName._(this.value);
+}
+
+class UrlImage extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  factory UrlImage(String input) {
+    assert(input != null);
+    return UrlImage._(
+      validateSingleLine(input)
+          .flatMap(validateStringNotEmpty),
+    );
+  }
+
+  const UrlImage._(this.value);
 }

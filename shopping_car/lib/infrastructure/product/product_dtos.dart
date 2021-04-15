@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shopping_car/domain/core/value_objects.dart';
 import 'package:shopping_car/domain/products/product.dart';
 import 'package:shopping_car/domain/products/value_objects.dart';
+import 'package:shopping_car/infrastructure/utils/http_services.dart';
 
 part 'product_dtos.freezed.dart';
 part 'product_dtos.g.dart';
@@ -15,7 +16,8 @@ abstract class ProductDto implements _$ProductDto {
   const factory ProductDto({
     @JsonKey(ignore: true) String id,
     @required String name,
-    @required int price,
+    @required String urlImage,
+    @required double price,
     @required @ServerTimestampConverter() FieldValue serverTimeStamp,
   }) = _ProductDto;
 
@@ -23,6 +25,7 @@ abstract class ProductDto implements _$ProductDto {
     return ProductDto(
       id: product.id.getOrCrash(),
       name: product.name.getOrCrash(),
+      urlImage: product.urlImage.getOrCrash(),
       price: product.price.getOrCrash(),
       serverTimeStamp: FieldValue.serverTimestamp(),
     );
@@ -32,6 +35,7 @@ abstract class ProductDto implements _$ProductDto {
     return Product(
       id: UniqueId.fromUniqueString(id),
       name: ProductName(name),
+      urlImage: UrlImage(HttpService.settingUrlStorage(path: '$urlImage/$id')),
       price: ProductPrice(price),
     );
   }
