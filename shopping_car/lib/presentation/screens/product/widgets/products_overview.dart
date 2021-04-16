@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:shopping_car/application/products/product_watcher/bloc/product_watcher_bloc.dart';
-import 'package:shopping_car/presentation/product/widgets/product_card.dart';
+import 'package:shopping_car/presentation/screens/product/widgets/overview_stack.dart';
 
 import 'critical_failure_display.dart';
-import 'error_note_card.dart';
 
 class ProductsOverview extends StatelessWidget {
   @override
@@ -18,16 +17,8 @@ class ProductsOverview extends StatelessWidget {
             child: CircularProgressIndicator(),
           ),
           loadSuccess: (state) {
-            return ListView.builder(
-              itemBuilder: (context, index) {
-                final product = state.products[index];
-                if (product.failureOption.isSome()) {
-                  return ErrorNoteCard(product: product);
-                } else {
-                  return ProductCard(product: product);
-                }
-              },
-              itemCount: state.products.size,
+            return OverviewStack(
+              listProducts: state.products,
             );
           },
           loadFailure: (state) {

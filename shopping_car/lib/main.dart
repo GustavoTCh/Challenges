@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:shopping_car/presentation/core/app.dart';
-import 'package:shopping_car/presentation/router/app_router.dart';
+import 'package:shopping_car/presentation/screens/router/app_router.dart';
 
 import 'injection.dart';
 
