@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopping_car/application/products/product_watcher/bloc/product_watcher_bloc.dart';
 import 'package:shopping_car/presentation/global_widgets/image_container.dart';
-import 'package:shopping_car/presentation/screens/product/products_overview_page.dart';
-import 'package:shopping_car/presentation/screens/product/widgets/critical_failure_display.dart';
+import 'package:shopping_car/presentation/pages/product/products_overview/products_overview_screen.dart';
+import 'package:shopping_car/presentation/pages/product/widgets/critical_failure_display.dart';
 
-class ProductHome extends StatelessWidget {
-  const ProductHome({Key key}) : super(key: key);
+class HomePage extends StatelessWidget {
+  const HomePage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,9 @@ class ProductHome extends StatelessWidget {
                         pageBuilder: (routeContext, animation, _) {
                           return FadeTransition(
                             opacity: animation,
-                            child: ProductsOverviewPage(),
+                            child: ProductsOverViewScreen(
+                              listProducts: products,
+                            ),
                           );
                         },
                       ),
@@ -73,7 +75,7 @@ class ProductHome extends StatelessWidget {
                       ),
                     ),
                     Positioned(
-                      height: size.height*0.9,
+                      height: size.height * 0.9,
                       left: 0,
                       right: 0,
                       bottom: -size.height * 0.3,

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:shopping_car/application/products/product_watcher/bloc/product_watcher_bloc.dart';
-import 'package:shopping_car/presentation/screens/product/widgets/overview_stack.dart';
+import 'package:shopping_car/presentation/pages/product/products_overview/products_overview_screen.dart';
 
-import 'critical_failure_display.dart';
+import '../widgets/critical_failure_display.dart';
 
-class ProductsOverview extends StatelessWidget {
+class ProductsOverviewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ProductWatcherBloc, ProductWatcherState>(
@@ -17,7 +17,7 @@ class ProductsOverview extends StatelessWidget {
             child: CircularProgressIndicator(),
           ),
           loadSuccess: (state) {
-            return OverviewStack(
+            return ProductsOverViewScreen(
               listProducts: state.products,
             );
           },

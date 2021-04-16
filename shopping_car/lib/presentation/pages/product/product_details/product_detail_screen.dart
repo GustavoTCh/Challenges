@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:injectable/injectable.dart';
+
 import 'package:shopping_car/domain/products/product.dart';
 import 'package:shopping_car/presentation/global_widgets/image_container.dart';
 
-class ProductDetailPage extends StatelessWidget {
-  const ProductDetailPage({Key key, @required this.product})
+class ProductDetailScreen extends StatelessWidget {
+  const ProductDetailScreen({Key key, @required this.product})
       : assert(product != null),
         super(key: key);
 
@@ -18,6 +18,25 @@ class ProductDetailPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
+        actions: <Widget>[
+          Row(
+            children: [
+              IconButton(
+                icon: Icon(
+                  Icons.shopping_bag_outlined,
+                  size: 35,
+                  color: Colors.black,
+                ),
+                onPressed: () {},
+                tooltip: 'Shopping car',
+                splashRadius: 25,
+              ),
+              SizedBox(
+                width: 10,
+              )
+            ],
+          ),
+        ],
         leading: BackButton(
           color: Colors.black,
         ),

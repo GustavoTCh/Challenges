@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:shopping_car/presentation/core/app.dart';
-import 'package:shopping_car/presentation/screens/router/app_router.dart';
 
 import 'injection.dart';
 
@@ -12,7 +11,5 @@ void main() async {
   configureInjection(Environment.prod);
   await Firebase.initializeApp();
 
-  runApp(MyApp(
-    appRouter: AppRouter(),
-  ));
+  runApp(MyApp());
 }
