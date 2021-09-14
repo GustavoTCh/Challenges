@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { check } = require("express-validator");
-const { createUSer, login, renew } = require("../controllers/auth");
+const { createUser, login, renew } = require("../controllers/auth");
 const { validateJWT } = require("../middlewares/validate-jwt");
 const { validateParams } = require("../middlewares/validate-params");
 
@@ -13,7 +13,7 @@ router.post('/new', [
     check('password', 'the password is required').notEmpty(),
     check('email', 'the email is required').isEmail(),
     validateParams
-], createUSer);
+], createUser);
 
 //  login
 router.post('/', [

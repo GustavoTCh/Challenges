@@ -27,7 +27,8 @@ const createUser = async (req, res = response) => {
 
         res.json({
             ok: true,
-            user
+            user,
+            token,
         });
 
     } catch (error) {
@@ -92,7 +93,7 @@ const renew = async (req, res = response) => {
 }
 
 module.exports = {
-    createUSer: createUser,
+    createUser,
     login,
     renew,
 }
