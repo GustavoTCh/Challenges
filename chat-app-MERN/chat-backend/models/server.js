@@ -37,6 +37,7 @@ class Server {
 
         // end points
         this.app.use('/api/login', require('../router/auth'));
+        this.app.use('/api/messages', require('../router/message'));
     }
 
     // Esta configuración se puede tener aquí o como propieda de clase

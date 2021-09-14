@@ -1,6 +1,6 @@
 const Message = require('../models/message');
 
-const getAllMessage = (req, res) => {
+const getAllMessage = async (req, res) => {
 
     const uid = req.uid;
     const messagesFrom = req.params.from;
@@ -10,7 +10,7 @@ const getAllMessage = (req, res) => {
             { from: messagesFrom, to: uid },
         ]
     })
-        .sort({ createdAt: 'desc' })
+        .sort({ createdAt: 'asc' })
         .limit(30);
 
     res.json({
