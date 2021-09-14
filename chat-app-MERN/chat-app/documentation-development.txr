@@ -1,2 +1,9 @@
 npm install react-router-dom
 
+npm i sweetalert2
+
+socket.io-client
+
+npm install moment --save
+
+npm i react-scroll
